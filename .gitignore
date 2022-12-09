@@ -1,3 +1,4 @@
 /vendor/
 /node_modules/
 /config.php
+/.php-cs-fixer.cache
