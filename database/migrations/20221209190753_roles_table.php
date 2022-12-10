@@ -1,10 +1,9 @@
 <?php
-
 declare(strict_types=1);
 
 use Phinx\Migration\AbstractMigration;
 
-final class CreateChampionRoleTable extends AbstractMigration
+final class RolesTable extends AbstractMigration
 {
     /**
      * Change Method.
@@ -17,7 +16,10 @@ final class CreateChampionRoleTable extends AbstractMigration
      * Remember to call "create()" or "update()" and NOT "save()" when working
      * with the Table class.
      */
-    public function change(): void
+    public function change()
     {
+        $table = $this->table('roles');
+        $table->addColumn('name', 'string')
+            ->create();
     }
 }
