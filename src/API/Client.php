@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\API;
 
 use App\Exceptions\FuckjoniException;
@@ -7,20 +9,16 @@ use Symfony\Component\HttpClient\HttpClient;
 
 class Client
 {
-    static public function getResponse(string $url)
+    public static function getResponse(string $url)
     {
         $client = HttpClient::create();
         $response = $client->request('GET', $url);
         $statusCode = $response->getStatusCode();
         $content = $response->toArray();
-        if($statusCode !== 200) {
-            throw new FuckjoniException("Impossible d'accèder à l'API LoL");
+        if ($statusCode !== 200) {
+            throw new FuckjoniException("Vivement le 23");
         }
         return $content;
     }
 
-    public function noResponseAPI(string $url)
-    {
-        return 'test';
-    }
 }

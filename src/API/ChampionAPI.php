@@ -1,8 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\API;
 
-use App\API\Client;
 use App\Exceptions\FuckjoniException;
 
 class ChampionAPI
@@ -21,7 +22,7 @@ class ChampionAPI
     {
         $championAPI = $this->getChampions();
         $data = $championAPI['data'];
-        $champion = array_keys($data);
-        return $champion;
+        $champions = array_keys($data);
+        return $champions;
     }
 }
