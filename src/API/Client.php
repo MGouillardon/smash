@@ -2,21 +2,25 @@
 
 namespace App\API;
 
+use App\Exceptions\FuckjoniException;
 use Symfony\Component\HttpClient\HttpClient;
 
 class Client
 {
-
-    public function getResponse()
+    static public function getResponse(string $url)
     {
         $client = HttpClient::create();
-        $response = $client->request('GET', 'http://ddragon.leagueoflegends.com/cdn/12.23.1/data/en_US/champion.json');
-        // $statusCode = $response->getStatusCode();
-        // $contentType = $response->getHeaders()['content-type'][0];
-        // $content = $response->getContent();
+        $response = $client->request('GET', $url);
+        $statusCode = $response->getStatusCode();
         $content = $response->toArray();
+        if($statusCode !== 200) {
+            throw new FuckjoniException("Impossible d'accèder à l'API LoL");
+        }
         return $content;
-
     }
 
+    public function noResponseAPI(string $url)
+    {
+        return 'test';
+    }
 }
