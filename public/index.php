@@ -2,12 +2,11 @@
 
 declare(strict_types=1);
 
-use App\API\ChampionAPI as Champions;
+use App\Api\Champion;
 
 require_once '../vendor/autoload.php';
 
 require_once '../resources/views/index.html';
 
-$champions = new Champions();
-$test = $champions->championToArray();
-dd($test);
+$champions = new Champion();
+$champions->store();

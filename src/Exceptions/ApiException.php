@@ -4,6 +4,6 @@ declare(strict_types=1);
 
 namespace App\Exceptions;
 
-class FuckjoniException extends \Exception
+class ApiException extends \Exception
 {
 }
