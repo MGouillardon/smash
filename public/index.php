@@ -6,7 +6,13 @@ use App\Api\Champion;
 
 require_once '../vendor/autoload.php';
 
-require_once '../resources/views/index.html';
 
-$champions = new Champion();
-$champions->store();
+switch (getUri()) {
+    case '/':
+        require_once '../resources/views/index.html';
+        break;
+    case '/storeChampions':
+        $champions = new Champion();
+        $champions->store();
+        break;
+}

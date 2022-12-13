@@ -6,7 +6,8 @@
             "Database\\": "database/"
         },
         "files": [
-            "config.php"
+            "config.php",
+            "helpers.php"
         ]
     },
     "require-dev": {
