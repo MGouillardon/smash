@@ -1,14 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Dto;
 
 final class Role
 {
-    protected string $name;
-
+    private string $name;
     /**
      * Get the value of name
-     */ 
+     */
     public function getName()
     {
         return $this->name;
@@ -16,13 +17,10 @@ final class Role
 
     /**
      * Set the value of name
-     *
-     * @return  self
-     */ 
-    public function setName($name)
+     */
+    public function setName($name): self
     {
         $this->name = $name;
-
         return $this;
     }
 }

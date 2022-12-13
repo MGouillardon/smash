@@ -1,19 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Dto;
 
 final class Champion
 {
-    protected string $name;
-
+    private string $name;
     public function getName()
     {
         return $this->name;
     }
 
-    public function setName($name)
-    {
-        $this->name = $name;
-        return $this;
-    }
+        public function setName($name)
+        {
+            $this->name = $name;
+            return $this;
+        }
 }

@@ -6,7 +6,6 @@ use App\Api\Champion;
 
 require_once '../vendor/autoload.php';
 
-
 switch (getUri()) {
     case '/':
         require_once '../resources/views/index.html';

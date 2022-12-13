@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 use Phinx\Migration\AbstractMigration;
@@ -16,7 +17,7 @@ final class UpdateRoleTable extends AbstractMigration
      * Remember to call "create()" or "update()" and NOT "save()" when working
      * with the Table class.
      */
-    public function up()
+    public function up(): void
     {
         $table = $this->table('roles');
         $table->addIndex(['name'], ['unique' => true])

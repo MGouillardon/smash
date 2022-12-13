@@ -12,7 +12,7 @@ use App\Models\Role as RoleModel;
 
 final class Champion
 {
-    const ENDPOINT = 'http://ddragon.leagueoflegends.com/cdn/12.23.1/data/en_US/champion.json';
+    public const ENDPOINT = 'http://ddragon.leagueoflegends.com/cdn/12.23.1/data/en_US/champion.json';
 
     public function index()
     {
@@ -27,7 +27,7 @@ final class Champion
         return $data;
     }
 
-    public function store()
+    public function store(): void
     {
         $data = $this->index();
 
@@ -37,10 +37,9 @@ final class Champion
         // une classe = un rôle, une méthode = une action
         // un classe doit avoir une seule et unique raison d'être modifiée
         foreach ($data['data'] as $champion) {
-            $champion = $this->createChampion($champion);
+            $championId = $this->createChampion($champion);
             $tags = $this->createTags($champion);
-
-            $this->linkChampionWithTags($champion, $tags);
+            $this->linkChampionWithTags($championId, $tags);
         }
     }
 
@@ -49,7 +48,6 @@ final class Champion
         $dtoChampion = new DtoChampion();
         $dtoChampion->setName($champion['name']);
         $championModel = new ChampionModel();
-
         return $championModel->store($dtoChampion);
     }
 
@@ -57,7 +55,7 @@ final class Champion
     {
         $tags = [];
         foreach ($champion['tags'] as $tag) {
-            $this->createTag($tag);
+            $tags[] = $this->createTag($tag);
         }
 
         return $tags;
@@ -73,7 +71,7 @@ final class Champion
 
     private function linkChampionWithTags(int $championId, array $tags): void
     {
-        foreach($tags as $tag) {
+        foreach ($tags as $tag) {
             $this->linkChampionWithTag($championId, $tag);
         }
     }

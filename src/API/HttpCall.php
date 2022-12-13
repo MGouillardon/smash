@@ -1,12 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Api;
 
 use App\Contracts\HttpCall as HttpCallInterface;
 
 final class HttpCall implements HttpCallInterface
 {
-
     public function __construct(private string $endpoint, private string $method = 'GET')
     {
     }
