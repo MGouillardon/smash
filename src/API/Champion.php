@@ -31,25 +31,56 @@ final class Champion
     {
         $data = $this->index();
 
+        // Refacto cette partie
+        // 3 requêtes SQL par boucle
+        // + bcp trop de méthode dans cette classe
+        // une classe = un rôle, une méthode = une action
+        // un classe doit avoir une seule et unique raison d'être modifiée
         foreach ($data['data'] as $champion) {
-            $dtoChampion = new DtoChampion();
-            $dtoChampion->setName($champion['name']);
-            $championModel = new ChampionModel();
-            $championModel->store($dtoChampion);
+            $champion = $this->createChampion($champion);
+            $tags = $this->createTags($champion);
 
-            foreach ($champion['tags'] as $tag) {
-                $dtoRole = new DtoRole();
-                $dtoRole->setName($tag);
-                $roleModel = new RoleModel();
-                $roleModel->store($dtoRole);
-            }
-
-            // récupérer le champion créé
-            // et de le lier aux tags
-
-
-            // et ensuite tout refacto =)
-            
+            $this->linkChampionWithTags($champion, $tags);
         }
+    }
+
+    private function createChampion(array $champion): int
+    {
+        $dtoChampion = new DtoChampion();
+        $dtoChampion->setName($champion['name']);
+        $championModel = new ChampionModel();
+
+        return $championModel->store($dtoChampion);
+    }
+
+    private function createTags($champion): array
+    {
+        $tags = [];
+        foreach ($champion['tags'] as $tag) {
+            $this->createTag($tag);
+        }
+
+        return $tags;
+    }
+
+    private function createTag(string $tag): int
+    {
+        $dtoRole = new DtoRole();
+        $dtoRole->setName($tag);
+        $roleModel = new RoleModel();
+        return $roleModel->store($dtoRole);
+    }
+
+    private function linkChampionWithTags(int $championId, array $tags): void
+    {
+        foreach($tags as $tag) {
+            $this->linkChampionWithTag($championId, $tag);
+        }
+    }
+
+    private function linkChampionWithTag(int $championId, int $tagId): void
+    {
+        $championModel = new ChampionModel();
+        $championModel->associateTag($championId, $tagId);
     }
 }
