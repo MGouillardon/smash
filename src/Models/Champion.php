@@ -27,4 +27,14 @@ class Champion extends Connection
         $query->bindValue(':tagId', $tagId, \PDO::PARAM_INT);
         $query->execute();
     }
+
+    public function count(): int
+    {
+        $sql = 'SELECT COUNT(*) FROM champions';
+        $query = $this->connection->prepare($sql);
+        $query->execute();
+        $result = $query->fetchColumn();
+
+        return (int) $result;
+    }
 }
