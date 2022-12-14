@@ -18,4 +18,13 @@ class Role extends Connection
 
         return (int) $this->connection->lastInsertId();
     }
+
+    public function get(string $name): array
+    {
+        $sql = 'SELECT * FROM roles WHERE name = :name';
+        $query = $this->connection->prepare($sql);
+        $query->bindValue(':name', $name, \PDO::PARAM_STR);
+        $query->execute();
+        return $query->fetch();
+    }
 }

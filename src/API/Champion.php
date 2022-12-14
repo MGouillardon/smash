@@ -4,17 +4,19 @@ declare(strict_types=1);
 
 namespace App\Api;
 
+use App\Contracts\Champion as ChampionInterface;
 use App\Dto\Champion as DtoChampion;
 use App\Dto\Role as DtoRole;
 use App\Exceptions\ApiException;
 use App\Models\Champion as ChampionModel;
 use App\Models\Role as RoleModel;
+use Database\Connection;
 
-final class Champion
+final class Champion extends Connection implements ChampionInterface
 {
     public const ENDPOINT = 'http://ddragon.leagueoflegends.com/cdn/12.23.1/data/en_US/champion.json';
 
-    public function index()
+    public function index(): array
     {
         $httpCall = new HttpCall(self::ENDPOINT);
 
@@ -31,15 +33,18 @@ final class Champion
     {
         $data = $this->index();
 
-        // Refacto cette partie
-        // 3 requêtes SQL par boucle
-        // + bcp trop de méthode dans cette classe
-        // une classe = un rôle, une méthode = une action
-        // un classe doit avoir une seule et unique raison d'être modifiée
         foreach ($data['data'] as $champion) {
+            $this->connection->beginTransaction();
             $championId = $this->createChampion($champion);
-            $tags = $this->createTags($champion);
-            $this->linkChampionWithTags($championId, $tags);
+            if ($championId) {
+                $tags = $this->createTags($champion);
+                $this->linkChampionWithTags($championId, $tags);
+            }
+            try {
+                $this->connection->commit();
+            } catch(\Exception $e) {
+                $this->connection->rollback();
+            }
         }
     }
 
@@ -66,7 +71,11 @@ final class Champion
         $dtoRole = new DtoRole();
         $dtoRole->setName($tag);
         $roleModel = new RoleModel();
-        return $roleModel->store($dtoRole);
+        $roleId = $roleModel->store($dtoRole);
+        if ($roleId) {
+            return $roleId;
+        }
+        return $roleModel->get($tag)['id'];
     }
 
     private function linkChampionWithTags(int $championId, array $tags): void

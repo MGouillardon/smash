@@ -10,8 +10,8 @@ switch (getUri()) {
     case '/':
         require_once '../resources/views/index.html';
         break;
-    case '/storeChampions':
+    case '/champions':
         $champions = new Champion();
-        $champions->store();
+        $champions->all();
         break;
 }
