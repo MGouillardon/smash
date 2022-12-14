@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Api\Champion;
+use App\Champion\RandomChampion;
 
 require_once '../vendor/autoload.php';
 
@@ -11,7 +11,7 @@ switch (getUri()) {
         require_once '../resources/views/index.html';
         break;
     case '/champions':
-        $champions = new Champion();
+        $champions = new RandomChampion();
         $champions->countChampionsId();
         break;
 }
