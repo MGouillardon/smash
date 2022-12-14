@@ -19,7 +19,14 @@ class RandomChampion extends Connection implements RandomChampionInterface
     public function randomChampionsId(int $countChampionId): int
     {
         $countChampionId = $this->countChampionsId();
-
         return random_int(1, $countChampionId);
     }
+    public function getRandomChampion(int $randomChampionId)
+    {
+        $championModel = new ChampionModel();
+        $getRandomChampion = $championModel->getChampion($randomChampionId);
+        dd($getRandomChampion);
+        return $getRandomChampion;
+    }
+
 }

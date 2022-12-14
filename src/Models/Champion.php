@@ -37,4 +37,15 @@ class Champion extends Connection
 
         return (int) $result;
     }
+
+    public function getChampion(int $randomChampionId): array
+    {
+        $sql = 'SELECT * FROM champions WHERE id = :randomChampionId';
+        $query = $this->connection->prepare($sql);
+        $query->bindValue(':randomChampionId', $randomChampionId, \PDO::PARAM_INT);
+        $query->execute();
+        $result = $query->fetch();
+
+        return $result;
+    }
 }
