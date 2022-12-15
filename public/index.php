@@ -12,6 +12,6 @@ switch (getUri()) {
         break;
     case '/champions':
         $champion = new RandomChampion();
-        $champion->getRandomChampion();
+        $champion->getTwoChampions();
         break;
 }

@@ -19,13 +19,23 @@ class RandomChampion extends Connection implements RandomChampionInterface
     {
         return random_int(1, $countChampion);
     }
-    public function getRandomChampion()
+    public function getRandomChampion(): array
     {
         $countChampions = $this->countChampions();
-        $randomChampionId = $this->randomChampionsId($countChampions);
+        $randomChampion = $this->randomChampionsId($countChampions);
         $championModel = new ChampionModel();
-        $getRandomChampion = $championModel->getChampion($randomChampionId);
-
+        $getRandomChampion = $championModel->getChampion($randomChampion);
         return $getRandomChampion;
+    }
+
+    public function getTwoChampions(): array
+    {
+        $firstChampion = $this->getRandomChampion();
+        $secondChampion = $this->getRandomChampion();
+        if ($firstChampion === $secondChampion) {
+            $firstChampion = $this->getRandomChampion();
+        }
+        dd($firstChampion, $secondChampion);
+        return [$firstChampion, $secondChampion];
     }
 }
