@@ -8,23 +8,24 @@ use App\Contracts\RandomChampion as RandomChampionInterface;
 
 class RandomChampion extends Connection implements RandomChampionInterface
 {
-    public function countChampionsId(): int
+    public function countChampions(): int
     {
         $championModel = new ChampionModel();
-        $countChampionId = $championModel->count();
-        return $countChampionId;
+        $countChampion = $championModel->count();
+        return $countChampion;
     }
 
-    public function randomChampionsId(int $countChampionId): int
+    public function randomChampionsId(int $countChampion): int
     {
-        $countChampionId = $this->countChampionsId();
-        return random_int(1, $countChampionId);
+        return random_int(1, $countChampion);
     }
-    public function getRandomChampion(int $randomChampionId)
+    public function getRandomChampion()
     {
+        $countChampions = $this->countChampions();
+        $randomChampionId = $this->randomChampionsId($countChampions);
         $championModel = new ChampionModel();
         $getRandomChampion = $championModel->getChampion($randomChampionId);
-        var_dump($getRandomChampion);
+
         return $getRandomChampion;
     }
 }

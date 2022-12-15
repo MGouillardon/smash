@@ -40,7 +40,7 @@ class Champion extends Connection
 
     public function getChampion(int $randomChampionId): array|bool
     {
-        $sql = 'SELECT * FROM champions WHERE id = :randomChampionId';
+        $sql = 'SELECT * FROM champions LIMIT :randomChampionId , 1';
         $query = $this->connection->prepare($sql);
         $query->bindValue(':randomChampionId', $randomChampionId, \PDO::PARAM_INT);
         $query->execute();
