@@ -1,6 +1,7 @@
-<?php 
+<?php
+
 
 use App\Api\StoreChampion;
 
-$champions = new StoreChampion();
+$storeChampion = new StoreChampion();
 $seedChampions->store();

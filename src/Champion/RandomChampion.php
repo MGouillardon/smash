@@ -6,7 +6,6 @@ use Database\Connection;
 use App\Models\Champion as ChampionModel;
 use App\Contracts\RandomChampion as RandomChampionInterface;
 
-
 class RandomChampion extends Connection implements RandomChampionInterface
 {
     public function countChampionsId(): int
@@ -25,8 +24,7 @@ class RandomChampion extends Connection implements RandomChampionInterface
     {
         $championModel = new ChampionModel();
         $getRandomChampion = $championModel->getChampion($randomChampionId);
-        dd($getRandomChampion);
+        var_dump($getRandomChampion);
         return $getRandomChampion;
     }
-
 }

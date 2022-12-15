@@ -38,7 +38,7 @@ class Champion extends Connection
         return (int) $result;
     }
 
-    public function getChampion(int $randomChampionId): array
+    public function getChampion(int $randomChampionId): array|bool
     {
         $sql = 'SELECT * FROM champions WHERE id = :randomChampionId';
         $query = $this->connection->prepare($sql);

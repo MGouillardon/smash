@@ -90,5 +90,4 @@ final class StoreChampion extends Connection implements StoreChampionInterface
         $championModel = new ChampionModel();
         $championModel->associateTag($championId, $tagId);
     }
-
 }
