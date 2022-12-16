@@ -1,13 +1,48 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
     <head>
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
+        <title>Smash</title>
     </head>
-    <body class="bg-red-500">
+    <body class="bg-primary">
         <div id="app"></div>
+        <div
+            class="h-screen flex flex-col justify-center items-center py-5 space-y-12 font-primary"
+        >
+            <h1 class="text-7xl text-center">WHICH CHAMP DO U SMASH</h1>
+            <div
+                class="bg-red-500 w-1/2 h-1/4 flex justify-evenly items-center flex-col"
+            >
+                <h2 class="text-5xl text-center">NAME</h2>
+                <div class="w-32 h-32 flex justify-evenly items-center">
+                    <img
+                        class=""
+                        src="http://ddragon.leagueoflegends.com/cdn/12.23.1/img/champion/Aatrox.png"
+                        alt=""
+                    />
+                </div>
+            </div>
+            <p class="text-5xl">OR</p>
+            <div
+                class="bg-red-500 w-1/2 h-1/4 flex justify-evenly items-center flex-col-reverse"
+            >
+                <h2 class="text-5xl text-center">NAME</h2>
+                <div class="w-32 h-32 flex justify-center items-center">
+                    <img
+                        class=""
+                        src="http://ddragon.leagueoflegends.com/cdn/12.23.1/img/champion/Aatrox.png"
+                        alt=""
+                    />
+                </div>
+            </div>
+            <a
+                class="text-5xl text-white bg-secondary rounded py-2 px-16 relative after:absolute after:h-full after:w-full after:rounded after:border-4 after:border-secondary after:bg-white after:-z-10 after:right-0 after:bottom-0 after:left-2.5 after:top-2.5 active:after:left-0 active:after:top-0 transition duration-1000 active:top-2.5 active:left-2.5"
+                href="#"
+                >RESULTS</a
+            >
+        </div>
 
         <script type="module" src="http://localhost:5173/@vite/client"></script>
         <script
