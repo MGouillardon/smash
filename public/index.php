@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Champion\RandomChampion;
+use App\Controllers\ChampionController as Duel;
 
 require_once '../vendor/autoload.php';
 
@@ -10,8 +10,8 @@ switch (getUri()) {
     case '/':
         require_once '../resources/views/index.html';
         break;
-    case '/champions':
-        $champion = new RandomChampion();
-        $champion->getTwoChampions();
+    case '/api/duel':
+        $duel = new Duel();
+        echo $duel->duel();
         break;
 }
