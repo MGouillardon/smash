@@ -12,7 +12,8 @@ module.exports = {
             },
             fontSize: {
                 tablet: '160px',
-                desktop: '300px'
+                desktop: '300px',
+                desktop2: '200px' 
 
             }
         },
