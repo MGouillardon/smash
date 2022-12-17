@@ -9,6 +9,11 @@ module.exports = {
             },
             fontFamily: {
                 primary: ['Humane']
+            },
+            fontSize: {
+                tablet: '160px',
+                desktop: '300px'
+
             }
         },
     },
