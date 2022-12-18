@@ -1,3 +1,6 @@
+@import './animation.css';
+@import './selectBtn.css';
+
 @font-face {
     font-family: Humane;
     src: url(/font/._Humane-Regular.ttf);

@@ -1,4 +1,6 @@
 import '../styles/main.css';
-import '../styles/animation.css';
-import '../styles/selectBtn.css';
-import './selectBtn';
+import ROUTER from './router/router';
+
+window.addEventListener('load', async () => {
+    await ROUTER();
+});
