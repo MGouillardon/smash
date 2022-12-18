@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controllers;
+
 use App\Champion\RandomChampion;
 
 class ChampionController
@@ -10,5 +11,9 @@ class ChampionController
         $champions = new RandomChampion();
 
         return json_encode($champions->getTwoChampions());
+    }
+
+    public function add()
+    {
     }
 }

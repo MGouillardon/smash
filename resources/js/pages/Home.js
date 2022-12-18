@@ -30,12 +30,15 @@ export default {
         const IMG_NAME_ONE = DATA[0]
             .replace("'", '')
             .replace(' ', '')
-            .replace('&');
-        const IMG_NAME_TWO = DATA[1].replace("'", '');
+            .replace(' & ', '');
+        const IMG_NAME_TWO = DATA[1]
+            .replace("'", '')
+            .replace(' ', '')
+            .replace(' & ', '');
         FIRST_CHAMP.innerHTML += `
     <h2 class="text-5xl text-center md:text-7xl">${DATA[0]}</h2>
                 <div class="w-32 h-32 flex justify-evenly items-center">
-                    <a href="#">
+                    <a href="/add">
                         <img
                             class=""
                             src="http://ddragon.leagueoflegends.com/cdn/12.23.1/img/champion/${IMG_NAME_ONE}.png"
@@ -48,7 +51,7 @@ export default {
         SECOND_CHAMP.innerHTML += `
     <h2 class="text-5xl text-center md:text-7xl pt-2 lg:pt-0">${DATA[1]}</h2>
                 <div class="w-32 h-32 flex justify-center items-center">
-                    <a href="#">
+                    <a href="/add">
                         <img
                             class=""
                             src="http://ddragon.leagueoflegends.com/cdn/12.23.1/img/champion/${IMG_NAME_TWO}.png"

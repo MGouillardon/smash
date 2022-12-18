@@ -10,6 +10,9 @@ switch (getUri()) {
     case '/':
         require_once '../resources/views/index.html';
         break;
+    case '/add':
+        require_once '../resources/views/index.html';
+        break;
     case '/api/duel':
         $duel = new Duel();
         echo $duel->duel();
