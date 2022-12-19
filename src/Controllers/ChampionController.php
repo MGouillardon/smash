@@ -3,8 +3,11 @@
 namespace App\Controllers;
 
 use App\Champion\RandomChampion;
+use Database\Connection;
+use App\Dto\Champion as DtoChampion;
+use App\Models\Champion as ChampionModel;
 
-class ChampionController
+class ChampionController extends Connection
 {
     public function duel()
     {
@@ -16,7 +19,11 @@ class ChampionController
     public function addScore()
     {
         $champion = $_GET['id'];
-        // var_dump($champion);
-        return $champion;
+        $dtoChampion = new DtoChampion();
+        $dtoChampion->setIdName($champion);
+        $championModel = new ChampionModel();
+        $championModel->updateScore($dtoChampion);
+        header('Location: /');
+        exit;
     }
 }

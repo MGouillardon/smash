@@ -7,7 +7,6 @@ namespace App\Api;
 use App\Contracts\StoreChampion as StoreChampionInterface;
 use App\Dto\Champion as DtoChampion;
 use App\Dto\Role as DtoRole;
-use App\Dto\Score as DtoScore;
 use App\Exceptions\ApiException;
 use App\Models\Champion as ChampionModel;
 use App\Models\Role as RoleModel;

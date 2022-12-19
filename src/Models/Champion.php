@@ -49,4 +49,14 @@ class Champion extends Connection
 
         return $result;
     }
+
+    public function updateScore(DtoChampion $champion): void
+    {
+        $id_name = $champion->getIdName();
+        $sql = 'UPDATE champions SET score = score + 1 WHERE id_name = :id_name';
+        $query = $this->connection->prepare($sql);
+        $query->bindValue(':id_name', $id_name, \PDO::PARAM_STR);
+        // dd($id_name);
+        $query->execute();
+    }
 }

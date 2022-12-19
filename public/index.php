@@ -13,7 +13,6 @@ switch (getUri()) {
     case '/add':
         $champion = new Champion();
         $champion->addScore();
-        require_once '../resources/views/index.html';
         break;
     case '/api/duel':
         $duel = new Champion();
