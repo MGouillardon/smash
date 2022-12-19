@@ -1,7 +1,7 @@
 export default {
     render: async () => `
         <div class="h-screen flex flex-col justify-center items-center py-5 space-y-6 font-primary">
-        <h1 class="text-7xl text-center md:text-tablet lg:text-desktop">
+        <h1 class="text-7xl text-center md:text-tablet lg:text-desktop2 2xl:text-desktop">
             WHICH CHAMP DO U SMASH
         </h1>
         <div class="h-3/4 flex flex-col items-center justify-center space-y-6 md:space-y-20 lg:flex-row lg:space-y-0 lg:w-3/4 lg:justify-evenly">
@@ -34,20 +34,16 @@ export default {
         const CHAMP_NAME_TWO = Object.values(DATA)[1];
         const KEY_ONE = Object.keys(DATA)[0];
         const KEY_TWO = Object.keys(DATA)[1];
-        let CLASS_NAME = 'pt-2 lg:pt-0';
+        const CLASS_NAME = 'pt-2 lg:pt-0';
 
         const FIRST_CHAMP = document.getElementById('first-champion-js');
-        FIRST_CHAMP.innerHTML += CHAMP_CHOICE.default(
-            (CLASS_NAME = ''),
-            KEY_ONE,
-            CHAMP_NAME_ONE
-        );
+        FIRST_CHAMP.innerHTML += CHAMP_CHOICE.default(KEY_ONE, CHAMP_NAME_ONE);
 
         const SECOND_CHAMP = document.getElementById('second-champion-js');
         SECOND_CHAMP.innerHTML += CHAMP_CHOICE.default(
-            CLASS_NAME,
             KEY_TWO,
-            CHAMP_NAME_TWO
+            CHAMP_NAME_TWO,
+            CLASS_NAME
         );
     },
 };

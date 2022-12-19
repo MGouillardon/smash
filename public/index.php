@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Controllers\ChampionController as Duel;
+use App\Controllers\ChampionController as Champion;
 
 require_once '../vendor/autoload.php';
 
@@ -11,10 +11,12 @@ switch (getUri()) {
         require_once '../resources/views/index.html';
         break;
     case '/add':
+        $champion = new Champion();
+        $champion->addScore();
         require_once '../resources/views/index.html';
         break;
     case '/api/duel':
-        $duel = new Duel();
+        $duel = new Champion();
         echo $duel->duel();
         break;
 }

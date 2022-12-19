@@ -13,7 +13,10 @@ class ChampionController
         return json_encode($champions->getTwoChampions());
     }
 
-    public function add()
+    public function addScore()
     {
+        $champion = $_GET['id'];
+        // var_dump($champion);
+        return $champion;
     }
 }

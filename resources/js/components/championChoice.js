@@ -1,13 +1,12 @@
 import profilePicture from '../composables/profilePicture';
 
-export default function (className, key, name) {
-    return `
+export default (key, name, className = '') => `
     
     <h2 class="text-5xl text-center md:text-7xl ${className}">${name}</h2>
-    <div class="w-32 h-32 lg:h-64 lg:w-64 flex justify-evenly items-center">
-    <a href="/add?${key}">
+    <div class="w-32 h-32 2xl:h-64 2xl:w-64 flex justify-evenly items-center">
+    <a href="/add?id=${key}">
     <img
-    class="w-32 h-32 lg:h-64 lg:w-64"
+    class="w-32 h-32 2xl:h-64 2xl:w-64"
     src="${profilePicture(key)}"
     alt="${name}"
     />
@@ -15,4 +14,3 @@ export default function (className, key, name) {
     </div>
     
     `;
-}
