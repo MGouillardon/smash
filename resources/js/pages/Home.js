@@ -19,43 +19,35 @@ export default {
     `,
     after_render: async () => {
         const DUEL = '/api/duel';
+
+        const CHAMP_CHOICE = await import('../components/championChoice');
+
         async function fetchToJSON(URL) {
             const response = await fetch(URL);
             const data = await response.json();
             return data;
         }
+
         const DATA = await fetchToJSON(DUEL);
 
         const CHAMP_NAME_ONE = Object.values(DATA)[0];
         const CHAMP_NAME_TWO = Object.values(DATA)[1];
-        const IMG_NAME_ONE = Object.keys(DATA)[0];
-        const IMG_NAME_TWO = Object.keys(DATA)[1];
+        const KEY_ONE = Object.keys(DATA)[0];
+        const KEY_TWO = Object.keys(DATA)[1];
+        let CLASS_NAME = 'pt-2 lg:pt-0';
 
         const FIRST_CHAMP = document.getElementById('first-champion-js');
-        FIRST_CHAMP.innerHTML += `
-    <h2 class="text-5xl text-center md:text-7xl">${CHAMP_NAME_ONE}</h2>
-                <div class="w-32 h-32 lg:h-64 lg:w-64 flex justify-evenly items-center">
-                    <a href="/add?${IMG_NAME_ONE}">
-                        <img
-                            class="w-32 h-32 lg:h-64 lg:w-64"
-                            src="http://ddragon.leagueoflegends.com/cdn/12.23.1/img/champion/${IMG_NAME_ONE}.png"
-                            alt="${CHAMP_NAME_ONE}"
-                        />
-                    </a>
-                </div>
-    `;
+        FIRST_CHAMP.innerHTML += CHAMP_CHOICE.default(
+            (CLASS_NAME = ''),
+            KEY_ONE,
+            CHAMP_NAME_ONE
+        );
+
         const SECOND_CHAMP = document.getElementById('second-champion-js');
-        SECOND_CHAMP.innerHTML += `
-    <h2 class="text-5xl text-center md:text-7xl pt-2 lg:pt-0">${CHAMP_NAME_TWO}</h2>
-                <div class="w-32 h-32 lg:h-64 lg:w-64 flex justify-center items-center">
-                    <a href="/add?${IMG_NAME_TWO}">
-                        <img
-                            class="w-32 h-32 lg:h-64 lg:w-64"
-                            src="http://ddragon.leagueoflegends.com/cdn/12.23.1/img/champion/${IMG_NAME_TWO}.png"
-                            alt="${CHAMP_NAME_TWO}"
-                        />
-                    </a>
-                </div>
-    `;
+        SECOND_CHAMP.innerHTML += CHAMP_CHOICE.default(
+            CLASS_NAME,
+            KEY_TWO,
+            CHAMP_NAME_TWO
+        );
     },
 };
