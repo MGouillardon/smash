@@ -15,7 +15,7 @@ export default {
         >
             RESULTS
         </a>
-    </div>;
+    </div>
     `,
     after_render: async () => {
         const DUEL = '/api/duel';
@@ -34,10 +34,10 @@ export default {
         const FIRST_CHAMP = document.getElementById('first-champion-js');
         FIRST_CHAMP.innerHTML += `
     <h2 class="text-5xl text-center md:text-7xl">${CHAMP_NAME_ONE}</h2>
-                <div class="w-32 h-32 flex justify-evenly items-center">
-                    <a href="/add">
+                <div class="w-32 h-32 lg:h-64 lg:w-64 flex justify-evenly items-center">
+                    <a href="/add?${IMG_NAME_ONE}">
                         <img
-                            class=""
+                            class="w-32 h-32 lg:h-64 lg:w-64"
                             src="http://ddragon.leagueoflegends.com/cdn/12.23.1/img/champion/${IMG_NAME_ONE}.png"
                             alt="${CHAMP_NAME_ONE}"
                         />
@@ -47,10 +47,10 @@ export default {
         const SECOND_CHAMP = document.getElementById('second-champion-js');
         SECOND_CHAMP.innerHTML += `
     <h2 class="text-5xl text-center md:text-7xl pt-2 lg:pt-0">${CHAMP_NAME_TWO}</h2>
-                <div class="w-32 h-32 flex justify-center items-center">
-                    <a href="/add">
+                <div class="w-32 h-32 lg:h-64 lg:w-64 flex justify-center items-center">
+                    <a href="/add?${IMG_NAME_TWO}">
                         <img
-                            class=""
+                            class="w-32 h-32 lg:h-64 lg:w-64"
                             src="http://ddragon.leagueoflegends.com/cdn/12.23.1/img/champion/${IMG_NAME_TWO}.png"
                             alt="${CHAMP_NAME_TWO}"
                         />

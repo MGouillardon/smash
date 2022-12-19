@@ -2,7 +2,6 @@
     height: 1rem;
     width: 100%;
     margin-inline: 5rem;
-
     background: #280004;
     animation: appears 1s ease-in-out;
 }
@@ -19,7 +18,6 @@
 .horizontal-line {
     height: 75%;
     width: 0.5rem;
-
     background: #280004;
     animation: appears2 1s ease-in-out;
 }
