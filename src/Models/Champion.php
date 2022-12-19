@@ -11,9 +11,10 @@ class Champion extends Connection
 {
     public function store(DtoChampion $champion): int
     {
-        $sql = 'INSERT INTO champions (name) VALUES (:name) ON DUPLICATE KEY UPDATE name = :name';
+        $sql = 'INSERT INTO champions (name, id_name) VALUES (:name, :id_name) ON DUPLICATE KEY UPDATE name = :name';
         $query = $this->connection->prepare($sql);
         $query->bindValue(':name', $champion->getName(), \PDO::PARAM_STR);
+        $query->bindValue(':id_name', $champion->getIdName(), \PDO::PARAM_STR);
         $query->execute();
 
         return (int) $this->connection->lastInsertId();
@@ -40,7 +41,7 @@ class Champion extends Connection
 
     public function getChampion(int $randomChampion): array|bool
     {
-        $sql = 'SELECT name FROM champions LIMIT :randomChampion , 1';
+        $sql = 'SELECT name, id_name FROM champions LIMIT :randomChampion , 1';
         $query = $this->connection->prepare($sql);
         $query->bindValue(':randomChampion', $randomChampion, \PDO::PARAM_INT);
         $query->execute();

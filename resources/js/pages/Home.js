@@ -9,7 +9,6 @@ export default {
             <p class="text-5xl md:text-7xl lg:pt-20">OR</p>
             <div class="flex flex-col-reverse lg:flex-col" id="second-champion-js"></div>
         </div>
-    
         <a
             class="text-5xl text-white bg-secondary rounded py-2 px-16 relative after:absolute after:h-full after:w-full after:rounded after:border-4 after:border-secondary after:bg-white after:-z-10 after:right-0 after:bottom-0 after:left-2.5 after:top-2.5 active:after:left-0 active:after:top-0 transition duration-1000 active:top-2.5 active:left-2.5 md:px-24"
             href="#results"
@@ -26,36 +25,34 @@ export default {
             return data;
         }
         const DATA = await fetchToJSON(DUEL);
+
+        const CHAMP_NAME_ONE = Object.values(DATA)[0];
+        const CHAMP_NAME_TWO = Object.values(DATA)[1];
+        const IMG_NAME_ONE = Object.keys(DATA)[0];
+        const IMG_NAME_TWO = Object.keys(DATA)[1];
+
         const FIRST_CHAMP = document.getElementById('first-champion-js');
-        const IMG_NAME_ONE = DATA[0]
-            .replace("'", '')
-            .replace(' ', '')
-            .replace(' & ', '');
-        const IMG_NAME_TWO = DATA[1]
-            .replace("'", '')
-            .replace(' ', '')
-            .replace(' & ', '');
         FIRST_CHAMP.innerHTML += `
-    <h2 class="text-5xl text-center md:text-7xl">${DATA[0]}</h2>
+    <h2 class="text-5xl text-center md:text-7xl">${CHAMP_NAME_ONE}</h2>
                 <div class="w-32 h-32 flex justify-evenly items-center">
                     <a href="/add">
                         <img
                             class=""
                             src="http://ddragon.leagueoflegends.com/cdn/12.23.1/img/champion/${IMG_NAME_ONE}.png"
-                            alt="${DATA[0]}"
+                            alt="${CHAMP_NAME_ONE}"
                         />
                     </a>
                 </div>
     `;
         const SECOND_CHAMP = document.getElementById('second-champion-js');
         SECOND_CHAMP.innerHTML += `
-    <h2 class="text-5xl text-center md:text-7xl pt-2 lg:pt-0">${DATA[1]}</h2>
+    <h2 class="text-5xl text-center md:text-7xl pt-2 lg:pt-0">${CHAMP_NAME_TWO}</h2>
                 <div class="w-32 h-32 flex justify-center items-center">
                     <a href="/add">
                         <img
                             class=""
                             src="http://ddragon.leagueoflegends.com/cdn/12.23.1/img/champion/${IMG_NAME_TWO}.png"
-                            alt="${DATA[1]}"
+                            alt="${CHAMP_NAME_TWO}"
                         />
                     </a>
                 </div>

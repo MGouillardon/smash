@@ -7,6 +7,7 @@ namespace App\Api;
 use App\Contracts\StoreChampion as StoreChampionInterface;
 use App\Dto\Champion as DtoChampion;
 use App\Dto\Role as DtoRole;
+use App\Dto\Score as DtoScore;
 use App\Exceptions\ApiException;
 use App\Models\Champion as ChampionModel;
 use App\Models\Role as RoleModel;
@@ -52,6 +53,7 @@ final class StoreChampion extends Connection implements StoreChampionInterface
     {
         $dtoChampion = new DtoChampion();
         $dtoChampion->setName($champion['name']);
+        $dtoChampion->setIdName($champion['id']);
         $championModel = new ChampionModel();
         return $championModel->store($dtoChampion);
     }
@@ -65,6 +67,7 @@ final class StoreChampion extends Connection implements StoreChampionInterface
 
         return $tags;
     }
+
 
     private function createTag(string $tag): int
     {

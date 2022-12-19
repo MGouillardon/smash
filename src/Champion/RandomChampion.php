@@ -36,6 +36,6 @@ class RandomChampion extends Connection implements RandomChampionInterface
             $this->getTwoChampions();
         }
 
-        return [$firstChampion['name'], $secondChampion['name']];
+        return [$firstChampion['id_name'] => $firstChampion['name'], $secondChampion['id_name'] => $secondChampion['name']];
     }
 }
