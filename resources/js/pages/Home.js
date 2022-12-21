@@ -1,3 +1,5 @@
+import { DUEL } from '../api';
+
 export default {
     render: async () => `
         <div class="h-screen flex flex-col justify-center items-center py-5 space-y-6 font-primary">
@@ -18,8 +20,6 @@ export default {
     </div>
     `,
     after_render: async () => {
-        const DUEL = '/api/duel';
-
         const CHAMP_CHOICE = await import('../components/championChoice');
 
         async function fetchToJSON(URL) {

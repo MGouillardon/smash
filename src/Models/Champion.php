@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Dto\Champion as DtoChampion;
+use App\Dto\Role as DtoRole;
 use Database\Connection;
 
 class Champion extends Connection
@@ -56,5 +57,31 @@ class Champion extends Connection
         $query = $this->connection->prepare($sql);
         $query->bindValue(':id_name', $champion->getIdName(), \PDO::PARAM_STR);
         $query->execute();
+    }
+
+    public function getTopChampions(): array
+    {
+        $sql = 'SELECT name, score FROM champions ORDER BY score DESC LIMIT 10';
+        $query = $this->connection->prepare($sql);
+        $query->execute();
+        $result = $query->fetchAll();
+
+        return $result;
+    }
+
+    public function getTopChampionsByRole(DtoRole $role): array
+    {
+        $sql = 'SELECT c.name, c.score, r.name role FROM champions AS c
+        JOIN champion_role AS cr ON c.id = cr.champion_id 
+        JOIN roles AS r ON r.id = cr.role_id
+        WHERE r.name = :role
+        ORDER BY score DESC
+        LIMIT 10';
+        $query = $this->connection->prepare($sql);
+        $query->bindValue(':role', $role->getName(), \PDO::PARAM_STR);
+        $query->execute();
+        $result = $query->fetchAll();
+
+        return $result;
     }
 }

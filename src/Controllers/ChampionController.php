@@ -26,4 +26,6 @@ class ChampionController extends Connection
         header('Location: /');
         exit;
     }
+
+    
 }
