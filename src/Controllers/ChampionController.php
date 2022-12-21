@@ -9,14 +9,14 @@ use App\Models\Champion as ChampionModel;
 
 class ChampionController extends Connection
 {
-    public function duel()
+    public function duel(): string
     {
         $champions = new RandomChampion();
 
         return json_encode($champions->getTwoChampions());
     }
 
-    public function addScore()
+    public function addScore(): void
     {
         $champion = $_GET['id'];
         $dtoChampion = new DtoChampion();
