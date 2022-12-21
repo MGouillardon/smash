@@ -7,7 +7,7 @@ export default {
           <li class="line hidden lg:flex"></li>
           <li>
               <h1
-                  class="text-7xl text-center md:text-tablet lg:text-desktop2"
+                  class="text-7xl text-center md:text-tablet lg:text-9xl 2xl:text-desktop2"
               >
                   RESULTS
               </h1>
@@ -27,7 +27,6 @@ export default {
                           name="list"
                           title="Top Mage"
                       />Top Mage
-                      <span class="checkmark"></span>
                   </label>
                   <label class="option_field">
                       <input
@@ -36,7 +35,6 @@ export default {
                           name="list"
                           title="Top Tank"
                       />Top Tank
-                      <span class="checkmark"></span>
                   </label>
                   <label class="option_field">
                       <input
@@ -45,7 +43,6 @@ export default {
                           name="list"
                           title="Top Fighter"
                       />Top Fighter
-                      <span class="checkmark"></span>
                   </label>
                   <label class="option_field">
                       <input
@@ -54,7 +51,6 @@ export default {
                           name="list"
                           title="Top Assassin"
                       />Top Assassin
-                      <span class="checkmark"></span>
                   </label>
                   <label class="option_field">
                       <input
@@ -63,7 +59,6 @@ export default {
                           name="list"
                           title="Top Marksman"
                       />Top Marksman
-                      <span class="checkmark"></span>
                   </label>
                   <label class="option_field">
                       <input
@@ -72,7 +67,6 @@ export default {
                           name="list"
                           title="Top Support"
                       />Top Support
-                      <span class="checkmark"></span>
                   </label>
               </div>
           </div>
