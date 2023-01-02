@@ -1,5 +1,3 @@
-import Chart from 'chart.js/auto';
-
 export default {
     render: async () => `
       <div
@@ -98,44 +96,15 @@ export default {
   </div>
 `,
     after_render: async () => {
-        const listItems = document.getElementsByClassName('list_option');
-        for (let i = 0; i < listItems.length; i += 1) {
-            listItems[i].addEventListener('click', () => {
+        const LIST_ITEMS = document.getElementsByClassName('list_option');
+        for (let i = 0; i < LIST_ITEMS.length; i += 1) {
+            LIST_ITEMS[i].addEventListener('click', () => {
                 document.getElementsByClassName('list_btn')[0].innerHTML =
-                    listItems[i].title;
+                    LIST_ITEMS[i].title;
             });
         }
         const CHART = document.getElementById('chart');
-        const MY_CHART = new Chart(CHART, {
-            type: 'doughnut',
-            data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-                datasets: [
-                    {
-                        label: '# of Champions',
-                        data: [12, 19, 3, 5, 2, 3],
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(255, 206, 86, 0.2)',
-                            'rgba(75, 192, 192, 0.2)',
-                            'rgba(153, 102, 255, 0.2)',
-                            'rgba(255, 159, 64, 0.2)',
-                        ],
-                        borderColor: [
-                            'rgba(255, 99, 132, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(153, 102, 255, 1)',
-                            'rgba(255, 159, 64, 1)',
-                        ],
-                        borderWidth: 1,
-                    },
-                ],
-            },
-        });
-
-        CHART.innerHTML += MY_CHART;
+        const MY_CHART = await import('../components/chart');
+        MY_CHART.default(CHART);
     },
 };
