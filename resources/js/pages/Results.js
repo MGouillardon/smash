@@ -1,5 +1,7 @@
+import Chart from 'chart.js/auto';
+
 export default {
-    render: async () => `     
+    render: async () => `
       <div
       class="h-screen flex flex-col items-center justify-evenly py-5 space-y-6 font-primary"
   >
@@ -75,14 +77,16 @@ export default {
           class="w-full h-full lg:h-1/2 flex flex-col lg:flex-row items-center justify-evenly relative lg:-top-12 space-y-10 lg:space-y-0"
       >
           <div class="lg:h-full h-3/4 w-3/4 flex justify-center">
-              <div
+              <canvas
                   class="h-full w-3/4 lg:w-1/2 bg-white rounded border-4 border-secondary relative after:absolute after:h-full after:w-full after:rounded after:border-4 after:border-secondary after:bg-white after:-z-10 after:right-0 after:bottom-0 after:left-4 after:top-4"
-              ></div>
+                  id="chart"
+              ></canvas>
           </div>
           <div class="hidden lg:flex horizontal-line"></div>
           <div class="lg:h-full h-3/4 w-3/4 flex justify-center">
               <div
                   class="h-full w-3/4 lg:w-1/2 bg-white rounded border-4 border-secondary relative after:absolute after:h-full after:w-full after:rounded after:border-4 after:border-secondary after:bg-white after:-z-10 after:right-0 after:bottom-0 after:left-4 after:top-4"
+
               ></div>
           </div>
       </ul>
@@ -101,5 +105,37 @@ export default {
                     listItems[i].title;
             });
         }
+        const CHART = document.getElementById('chart');
+        const MY_CHART = new Chart(CHART, {
+            type: 'doughnut',
+            data: {
+                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                datasets: [
+                    {
+                        label: '# of Champions',
+                        data: [12, 19, 3, 5, 2, 3],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)',
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)',
+                        ],
+                        borderWidth: 1,
+                    },
+                ],
+            },
+        });
+
+        CHART.innerHTML += MY_CHART;
     },
 };

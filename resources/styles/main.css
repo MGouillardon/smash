@@ -3,7 +3,7 @@
 
 @font-face {
     font-family: Humane;
-    src: url(/font/._Humane-Regular.ttf);
+    src: url(/font/Humane-Regular.ttf);
 }
 
 @tailwind base;
