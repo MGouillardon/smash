@@ -1,32 +1,39 @@
 import Chart from 'chart.js/auto';
 
 export default value =>
-    new Chart(value, {
-        type: 'doughnut',
-        data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-            datasets: [
-                {
-                    label: '# of Champions',
-                    data: [12, 19, 3, 5, 2, 3],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)',
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)',
-                    ],
-                    borderWidth: 1,
-                },
-            ],
+  new Chart(value, {
+    type: 'doughnut',
+    data: {
+      labels: [
+        'Red',
+        'Blue',
+        'Yellow',
+        'Green',
+        'Purple',
+        'Orange',
+        'Grey',
+        'Black',
+        'White',
+        'Pink',
+      ],
+      datasets: [
+        {
+          label: '# of Champions',
+          data: [12, 19, 3, 5, 2, 3, 7, 1, 1, 1],
+          backgroundColor: [
+            '#1be7ff',
+            '#6eeb83',
+            '#e4ff1a',
+            '#ffb800',
+            '#ff5714',
+            '#083d77',
+            '#ebebd3',
+            '#da4167',
+            '#f4d35e',
+            '#f78764',
+          ],
+          borderWidth: 1,
         },
-    });
+      ],
+    },
+  });

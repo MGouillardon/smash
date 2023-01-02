@@ -1,7 +1,7 @@
 import { DUEL } from '../api';
 
 export default {
-    render: async () => `
+  render: async () => `
         <div class="h-screen flex flex-col justify-center items-center py-5 space-y-6 font-primary">
         <h1 class="text-7xl text-center md:text-tablet lg:text-desktop2 2xl:text-desktop">
             WHICH CHAMP DO U SMASH
@@ -19,31 +19,31 @@ export default {
         </a>
     </div>
     `,
-    after_render: async () => {
-        const CHAMP_CHOICE = await import('../components/championChoice');
+  after_render: async () => {
+    const CHAMP_CHOICE = await import('../components/championChoice');
 
-        async function fetchToJSON(URL) {
-            const response = await fetch(URL);
-            const data = await response.json();
-            return data;
-        }
+    async function fetchToJSON(URL) {
+      const response = await fetch(URL);
+      const data = await response.json();
+      return data;
+    }
 
-        const DATA = await fetchToJSON(DUEL);
+    const DATA = await fetchToJSON(DUEL);
 
-        const CHAMP_NAME_ONE = Object.values(DATA)[0];
-        const CHAMP_NAME_TWO = Object.values(DATA)[1];
-        const KEY_ONE = Object.keys(DATA)[0];
-        const KEY_TWO = Object.keys(DATA)[1];
-        const CLASS_NAME = 'pt-2 lg:pt-0';
+    const CHAMP_NAME_ONE = Object.values(DATA)[0];
+    const CHAMP_NAME_TWO = Object.values(DATA)[1];
+    const KEY_ONE = Object.keys(DATA)[0];
+    const KEY_TWO = Object.keys(DATA)[1];
+    const CLASS_NAME = 'pt-2 lg:pt-0';
 
-        const FIRST_CHAMP = document.getElementById('first-champion-js');
-        FIRST_CHAMP.innerHTML += CHAMP_CHOICE.default(KEY_ONE, CHAMP_NAME_ONE);
+    const FIRST_CHAMP = document.getElementById('first-champion-js');
+    FIRST_CHAMP.innerHTML += CHAMP_CHOICE.default(KEY_ONE, CHAMP_NAME_ONE);
 
-        const SECOND_CHAMP = document.getElementById('second-champion-js');
-        SECOND_CHAMP.innerHTML += CHAMP_CHOICE.default(
-            KEY_TWO,
-            CHAMP_NAME_TWO,
-            CLASS_NAME
-        );
-    },
+    const SECOND_CHAMP = document.getElementById('second-champion-js');
+    SECOND_CHAMP.innerHTML += CHAMP_CHOICE.default(
+      KEY_TWO,
+      CHAMP_NAME_TWO,
+      CLASS_NAME
+    );
+  },
 };

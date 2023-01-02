@@ -1,5 +1,5 @@
 export default {
-    render: async () => `
+  render: async () => `
       <div
       class="h-screen flex flex-col items-center justify-evenly py-5 space-y-6 font-primary"
   >
@@ -95,16 +95,16 @@ export default {
       >
   </div>
 `,
-    after_render: async () => {
-        const LIST_ITEMS = document.getElementsByClassName('list_option');
-        for (let i = 0; i < LIST_ITEMS.length; i += 1) {
-            LIST_ITEMS[i].addEventListener('click', () => {
-                document.getElementsByClassName('list_btn')[0].innerHTML =
-                    LIST_ITEMS[i].title;
-            });
-        }
-        const CHART = document.getElementById('chart');
-        const MY_CHART = await import('../components/chart');
-        MY_CHART.default(CHART);
-    },
+  after_render: async () => {
+    const LIST_ITEMS = document.getElementsByClassName('list_option');
+    for (let i = 0; i < LIST_ITEMS.length; i += 1) {
+      LIST_ITEMS[i].addEventListener('click', () => {
+        document.getElementsByClassName('list_btn')[0].innerHTML =
+          LIST_ITEMS[i].title;
+      });
+    }
+    const CHART = document.getElementById('chart');
+    const MY_CHART = await import('../components/chart');
+    MY_CHART.default(CHART);
+  },
 };
