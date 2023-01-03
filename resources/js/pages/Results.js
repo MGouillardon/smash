@@ -15,62 +15,18 @@ export default {
 
           <li class="line hidden lg:flex"></li>
       </ul>
-      <div class="w-full flex items-center justify-center">
-          <div class="menu_container">
-              <button class="list_btn">Select an option</button>
-              <span class="button_arrow"></span>
-              <div class="option_container">
-                  <label class="option_field">
-                      <input
-                          class="list_option"
-                          type="radio"
-                          name="list"
-                          title="Top Mage"
-                      />Top Mage
-                  </label>
-                  <label class="option_field">
-                      <input
-                          class="list_option"
-                          type="radio"
-                          name="list"
-                          title="Top Tank"
-                      />Top Tank
-                  </label>
-                  <label class="option_field">
-                      <input
-                          class="list_option"
-                          type="radio"
-                          name="list"
-                          title="Top Fighter"
-                      />Top Fighter
-                  </label>
-                  <label class="option_field">
-                      <input
-                          class="list_option"
-                          type="radio"
-                          name="list"
-                          title="Top Assassin"
-                      />Top Assassin
-                  </label>
-                  <label class="option_field">
-                      <input
-                          class="list_option"
-                          type="radio"
-                          name="list"
-                          title="Top Marksman"
-                      />Top Marksman
-                  </label>
-                  <label class="option_field">
-                      <input
-                          class="list_option"
-                          type="radio"
-                          name="list"
-                          title="Top Support"
-                      />Top Support
-                  </label>
-              </div>
+          <div class="w-full flex items-center justify-center">
+            <label for="top__score"></label>
+             <select name="score" id="top__score" class="text-5xl text-white bg-secondary rounded h-16">
+                <option value="">--Please choose an option--</option>
+                <option value="Assassin">Top Assassin</option>
+                <option value="Fighter">Top Fighter</option>
+                <option value="Mage">Top Mage</option>
+                <option value="Marksman">Top Marksman</option>
+                <option value="Support">Top Support</option>
+                <option value="Tank">Top Tank</option>
+              </select>
           </div>
-      </div>
       <ul
           class="w-full h-full lg:h-1/2 flex flex-col lg:flex-row items-center justify-evenly relative lg:-top-12 space-y-10 lg:space-y-0"
       >
@@ -96,15 +52,11 @@ export default {
   </div>
 `,
   after_render: async () => {
-    const LIST_ITEMS = document.getElementsByClassName('list_option');
-    for (let i = 0; i < LIST_ITEMS.length; i += 1) {
-      LIST_ITEMS[i].addEventListener('click', () => {
-        document.getElementsByClassName('list_btn')[0].innerHTML =
-          LIST_ITEMS[i].title;
-      });
-    }
     const CHART = document.getElementById('chart');
     const MY_CHART = await import('../components/chart');
     MY_CHART.default(CHART);
+    // document.getElementById('top__score').addEventListener('change', (e) => {
+    //   console.log(e.target.value);
+    // });
   },
 };
