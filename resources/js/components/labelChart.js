@@ -1,13 +1,14 @@
 import Chart from 'chart.js/auto';
 
-export default (display, score) =>
+export default (display, champions) =>
   new Chart(display, {
     type: 'doughnut',
     data: {
+      labels: champions,
+
       datasets: [
         {
           label: "Champion's score",
-          data: score,
           backgroundColor: [
             '#1be7ff',
             '#6eeb83',

@@ -1,3 +1,5 @@
+import { TOP_CHAMPIONS } from '../api';
+
 export default {
   render: async () => `
       <div
@@ -17,8 +19,8 @@ export default {
       </ul>
           <div class="w-full flex items-center justify-center">
             <label for="top__score"></label>
-             <select name="score" id="top__score" class="text-5xl text-white bg-secondary rounded h-16">
-                <option value="">--Please choose an option--</option>
+             <select name="score" id="top__score" class="text-5xl text-white bg-secondary rounded h-16 px-2 text-center">
+                <option value="">Top 10</option>
                 <option value="Assassin">Top Assassin</option>
                 <option value="Fighter">Top Fighter</option>
                 <option value="Mage">Top Mage</option>
@@ -32,16 +34,17 @@ export default {
       >
           <div class="lg:h-full h-3/4 w-3/4 flex justify-center">
               <canvas
-                  class="h-full w-3/4 lg:w-1/2 bg-white rounded border-4 border-secondary relative after:absolute after:h-full after:w-full after:rounded after:border-4 after:border-secondary after:bg-white after:-z-10 after:right-0 after:bottom-0 after:left-4 after:top-4"
+                  class="h-full w-3/4 lg:w-1/2 bg-white rounded border-4 border-secondary p-10 relative after:absolute after:h-full after:w-full after:rounded after:border-4 after:border-secondary after:bg-white after:-z-10 after:right-0 after:bottom-0 after:left-4 after:top-4"
                   id="chart"
               ></canvas>
           </div>
           <div class="hidden lg:flex horizontal-line"></div>
           <div class="lg:h-full h-3/4 w-3/4 flex justify-center">
-              <div
+              <canvas
                   class="h-full w-3/4 lg:w-1/2 bg-white rounded border-4 border-secondary relative after:absolute after:h-full after:w-full after:rounded after:border-4 after:border-secondary after:bg-white after:-z-10 after:right-0 after:bottom-0 after:left-4 after:top-4"
+                  id="labels"
 
-              ></div>
+              ></canvas>
           </div>
       </ul>
       <a
@@ -52,11 +55,24 @@ export default {
   </div>
 `,
   after_render: async () => {
+    async function fetchToJSON(URL) {
+      const response = await fetch(URL);
+      return response.json();
+    }
+    document.getElementById('top__score').addEventListener('change', e => {
+      const INPUT_VALUE = e.target.value;
+      console.log(INPUT_VALUE);
+    });
+
+    const DATA = await fetchToJSON(TOP_CHAMPIONS);
+    const DATA_TOP_CHAMPIONS = Object.keys(DATA);
+    const DATA_SCORE_CHAMPIONS = Object.values(DATA);
+    console.log(DATA_TOP_CHAMPIONS, DATA_SCORE_CHAMPIONS);
     const CHART = document.getElementById('chart');
     const MY_CHART = await import('../components/chart');
-    MY_CHART.default(CHART);
-    // document.getElementById('top__score').addEventListener('change', (e) => {
-    //   console.log(e.target.value);
-    // });
+    MY_CHART.default(CHART, DATA_SCORE_CHAMPIONS);
+    const LABELS_CHART = document.getElementById('labels');
+    const MY_LABELS_CHART = await import('../components/labelChart');
+    MY_LABELS_CHART.default(LABELS_CHART, DATA_TOP_CHAMPIONS);
   },
 };
