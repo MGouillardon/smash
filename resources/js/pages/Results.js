@@ -33,18 +33,22 @@ export default {
           class="w-full h-full lg:h-1/2 flex flex-col lg:flex-row items-center justify-evenly relative lg:-top-12 space-y-10 lg:space-y-0"
       >
           <div class="lg:h-full h-3/4 w-3/4 flex justify-center">
-              <canvas
+              <div
                   class="h-full w-3/4 lg:w-1/2 bg-white rounded border-4 border-secondary p-10 relative after:absolute after:h-full after:w-full after:rounded after:border-4 after:border-secondary after:bg-white after:-z-10 after:right-0 after:bottom-0 after:left-4 after:top-4"
-                  id="chart"
-              ></canvas>
+
+              >
+              <canvas id="chart"></canvas>
+</div>
           </div>
           <div class="hidden lg:flex horizontal-line"></div>
           <div class="lg:h-full h-3/4 w-3/4 flex justify-center">
-              <canvas
+              <div
                   class="h-full w-3/4 lg:w-1/2 bg-white rounded border-4 border-secondary relative after:absolute after:h-full after:w-full after:rounded after:border-4 after:border-secondary after:bg-white after:-z-10 after:right-0 after:bottom-0 after:left-4 after:top-4"
                   id="labels"
 
-              ></canvas>
+              >
+              <ul></ul>
+</div>
           </div>
       </ul>
       <a
@@ -67,12 +71,8 @@ export default {
     const DATA = await fetchToJSON(TOP_CHAMPIONS);
     const DATA_TOP_CHAMPIONS = Object.keys(DATA);
     const DATA_SCORE_CHAMPIONS = Object.values(DATA);
-    console.log(DATA_TOP_CHAMPIONS, DATA_SCORE_CHAMPIONS);
     const CHART = document.getElementById('chart');
     const MY_CHART = await import('../components/chart');
-    MY_CHART.default(CHART, DATA_SCORE_CHAMPIONS);
-    const LABELS_CHART = document.getElementById('labels');
-    const MY_LABELS_CHART = await import('../components/labelChart');
-    MY_LABELS_CHART.default(LABELS_CHART, DATA_TOP_CHAMPIONS);
+    MY_CHART.default(CHART, DATA_TOP_CHAMPIONS, DATA_SCORE_CHAMPIONS);
   },
 };
