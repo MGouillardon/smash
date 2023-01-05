@@ -1,10 +1,9 @@
-<?php 
+<?php
 
 namespace App\Contracts;
 
-interface StoreChampion 
+interface StoreChampion
 {
     public function index(): array;
     public function store(): void;
-    
 }

@@ -8,12 +8,13 @@ module.exports = {
                 secondary: '#280004'
             },
             fontFamily: {
-                primary: ['Humane']
+                primary: ['Humane'],
+                secondary: ['Poppins']
             },
             fontSize: {
                 tablet: '160px',
                 desktop: '300px',
-                desktop2: '200px' 
+                desktop2: '200px'
 
             }
         },

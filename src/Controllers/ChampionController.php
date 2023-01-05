@@ -6,6 +6,7 @@ use App\Champion\RandomChampion;
 use Database\Connection;
 use App\Dto\Champion as DtoChampion;
 use App\Models\Champion as ChampionModel;
+use JetBrains\PhpStorm\NoReturn;
 
 class ChampionController extends Connection
 {
@@ -16,7 +17,7 @@ class ChampionController extends Connection
         return json_encode($champions->getTwoChampions());
     }
 
-    public function addScore(): void
+    #[NoReturn] public function addScore(): void
     {
         $champion = $_GET['id'];
         $dtoChampion = new DtoChampion();
@@ -26,6 +27,4 @@ class ChampionController extends Connection
         header('Location: /');
         exit;
     }
-
-    
 }

@@ -2,7 +2,7 @@ import { DUEL } from '../api';
 
 export default {
   render: async () => `
-        <div class="h-screen flex flex-col justify-center items-center py-5 space-y-6 font-primary">
+        <div class="h-screen flex flex-col justify-center items-center py-5 font-primary">
         <h1 class="text-7xl text-center md:text-tablet lg:text-desktop2 2xl:text-desktop">
             WHICH CHAMP DO U SMASH
         </h1>

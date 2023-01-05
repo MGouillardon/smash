@@ -1,8 +1,7 @@
-<?php 
+<?php
 
 namespace App\Contracts;
 
-interface RandomChampion 
+interface RandomChampion
 {
-
 }
